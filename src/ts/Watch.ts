@@ -16,7 +16,6 @@ class Watch {
     }
 
     public modeButton(): void {
-        console.log("Mode button clicked")
         if (this.mode === "view") {
             this.mode = "editHours"
         } else if (this.mode === "editHours") {
@@ -47,7 +46,7 @@ class Watch {
         this.timeOffset.minutes = 0
     }
 
-    public getTime(): string {
+    public getCurrentTime(): string {
         this.currentTime = new Date() // update time
 
         // Apply modifications
@@ -72,7 +71,7 @@ class Watch {
         return `
         <div class="${this.lightOn ? "" : "dark"}">
             <div class="dark:bg-slate-800 bg-white-800 mx-auto border border-purple-800 rounded-xl p-4 w-1/2 grid place-items-center shadow-md">
-                <p class="text-xl text-purple-600">${this.getTime()}</p>
+                <p class="text-xl text-purple-600">${this.getCurrentTime()}</p>
                 <p class="text-purple-500 my-1">(${this.timeZone})</p>
                 <div class="flex space-x-2">
                     <button id="mode" class="p-2 bg-purple-800 text-white rounded-md">Mode</button>
