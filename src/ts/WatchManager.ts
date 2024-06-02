@@ -36,6 +36,13 @@ class WatchManager {
                     .addEventListener("click", () => {
                         watch.lightButton()
                     })
+
+                newDiv
+                    .querySelector("button#reset")
+                    .addEventListener("click", () => {
+                        watch.resetButton()
+                    })
+
                 containerDiv.appendChild(newDiv)
             })
         } else {

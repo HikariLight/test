@@ -32,6 +32,11 @@ class Watch {
         this.lightOn = !this.lightOn
     }
 
+    public resetButton(): void {
+        this.timeOffset.hours = 0
+        this.timeOffset.minutes = 0
+    }
+
     public getTime(): string {
         this.currentTime = new Date()
         this.currentTime.setHours(
@@ -53,6 +58,7 @@ class Watch {
                     <button id="mode" class="p-2 bg-purple-800 text-white rounded-md">Mode</button>
                     <button id="increase" class="p-2 bg-purple-800 text-white rounded-md">Increase</button>
                     <button id="light" class="p-2 bg-purple-800 text-white rounded-md">Light</button>
+                    <button id="reset" class="p-2 bg-purple-800 text-white rounded-md">Reset</button>
                 </div>
         
             </div>
