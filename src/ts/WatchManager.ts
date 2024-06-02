@@ -7,6 +7,10 @@ class WatchManager {
         this.watches = []
     }
 
+    public createWatch = (timeZone: string) => {
+        this.watches.push(new Watch(timeZone))
+    }
+
     public addWatch = (watch: Watch) => {
         this.watches.push(watch)
     }
