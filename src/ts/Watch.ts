@@ -1,6 +1,7 @@
 class Watch {
     private currentTime: Date
     private mode: "view" | "editHours" | "editMinutes"
+    private timeFormat: "12" | "24"
     private timeZone: string
     private lightOn: boolean
     private timeOffset: TimeEdit
@@ -9,6 +10,7 @@ class Watch {
         this.currentTime = new Date()
         this.mode = "view"
         this.lightOn = false
+        this.timeFormat = "24"
         this.timeZone = timeZone
         this.timeOffset = { hours: 0, minutes: 0 }
     }
@@ -22,6 +24,12 @@ class Watch {
         } else {
             this.mode = "view"
         }
+    }
+
+    public toggleTimeFormat = () => {
+        this.timeFormat === "24"
+            ? (this.timeFormat = "12")
+            : (this.timeFormat = "24")
     }
 
     public increaseButton(): void {

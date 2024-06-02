@@ -24,3 +24,9 @@ addWatchButton.addEventListener("click", () => {
     watchManager.renderWatches("container")
 })
 
+// Changing display format (24H/12H)
+const settingsApplyButton = document.querySelector("button#toggleDisplayFormat")
+settingsApplyButton.addEventListener("click", () => {
+    watchManager.toggleDisplayFormat()
+    watchManager.renderWatches("container")
+})

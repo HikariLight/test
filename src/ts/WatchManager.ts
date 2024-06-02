@@ -15,6 +15,12 @@ class WatchManager {
         this.watches.push(watch)
     }
 
+    public toggleDisplayFormat = () => {
+        this.watches.forEach((watch) => {
+            watch.toggleTimeFormat()
+        })
+    }
+
     public renderWatches = (targetDiv: string) => {
         const containerDiv = document.getElementById(targetDiv)
         if (containerDiv) {
