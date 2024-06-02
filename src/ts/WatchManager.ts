@@ -33,24 +33,28 @@ class WatchManager {
                     .querySelector("button#mode")
                     .addEventListener("click", () => {
                         watch.modeButton()
+                        this.renderWatches("container")
                     })
 
                 newDiv
                     .querySelector("button#increase")
                     .addEventListener("click", () => {
                         watch.increaseButton()
+                        this.renderWatches("container")
                     })
 
                 newDiv
                     .querySelector("button#light")
                     .addEventListener("click", () => {
                         watch.lightButton()
+                        this.renderWatches("container")
                     })
 
                 newDiv
                     .querySelector("button#reset")
                     .addEventListener("click", () => {
                         watch.resetButton()
+                        this.renderWatches("container")
                     })
 
                 containerDiv.appendChild(newDiv)
