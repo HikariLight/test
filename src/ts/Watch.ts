@@ -70,7 +70,7 @@ class Watch {
     public toHTML(): string {
         return `
         <div class="${this.lightOn ? "" : "dark"}">
-            <div class="dark:bg-slate-800 bg-white-800 mx-auto border border-purple-800 rounded-xl p-4 w-1/2 grid place-items-center shadow-md">
+            <div class="dark:bg-slate-800 bg-white-800 mx-auto border border-purple-800 rounded-xl p-4 w-full sm:w-1/2 grid place-items-center shadow-md">
                 <p class="text-xl text-purple-600">${this.getCurrentTime()}</p>
                 <p class="text-purple-500 my-1">(${this.timeZone})</p>
                 <div class="flex space-x-2">
