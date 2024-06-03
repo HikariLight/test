@@ -8,7 +8,11 @@ class WatchManager {
     }
 
     public createWatch = (timeZone: string) => {
-        this.watches.push(new Watch(timeZone))
+        try {
+            this.watches.push(new Watch(timeZone))
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     public addWatch = (watch: Watch) => {
@@ -60,7 +64,7 @@ class WatchManager {
                 containerDiv.appendChild(newDiv)
             })
         } else {
-            console.error(`Parent div not found.`)
+            throw new Error("Target div not found.")
         }
     }
 }
