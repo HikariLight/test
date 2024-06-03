@@ -30,6 +30,7 @@ module.exports = {
             title: "GE Template ts",
             template: path.join(process.cwd(), "src/index.html"),
             filename: "index.html",
+            favicon: path.join(process.cwd(), "src/favicon.ico"),
         }),
     ],
     devServer: {
