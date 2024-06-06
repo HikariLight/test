@@ -1,2 +1,4 @@
 export * from "./Watch"
-export * from "./WatchManager"
+export * from "./WatchModel"
+export * from "./WatchView"
+export * from "./WatchController"
