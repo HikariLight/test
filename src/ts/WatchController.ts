@@ -15,72 +15,40 @@ class WatchController {
 
     public addNewWatch = (timeZone: string): void => {
         this.watchModel.createWatch(timeZone)
-        this.watchView.renderWatches(
-            this.watchModel.getWatches(),
-            this.handleModeClick,
-            this.handleLightClick,
-            this.handleIncreaseClick,
-            this.handleResetClick,
-        )
+        this.renderView()
     }
 
     public handleIncreaseClick = (id: number) => {
         this.watchModel.getWatch(id).increase()
-        this.watchView.renderWatches(
-            this.watchModel.getWatches(),
-            this.handleModeClick,
-            this.handleLightClick,
-            this.handleIncreaseClick,
-            this.handleResetClick,
-        )
+        this.renderView()
     }
 
     public handleModeClick = (id: number) => {
         this.watchModel.getWatch(id).toggleMode()
-        this.watchView.renderWatches(
-            this.watchModel.getWatches(),
-            this.handleModeClick,
-            this.handleLightClick,
-            this.handleIncreaseClick,
-            this.handleResetClick,
-        )
+        this.renderView()
     }
 
     public handleLightClick = (id: number) => {
         this.watchModel.getWatch(id).toggleLight()
-        this.watchView.renderWatches(
-            this.watchModel.getWatches(),
-            this.handleModeClick,
-            this.handleLightClick,
-            this.handleIncreaseClick,
-            this.handleResetClick,
-        )
+        this.renderView()
     }
 
     public handleResetClick = (id: number) => {
         this.watchModel.getWatch(id).reset()
-        this.watchView.renderWatches(
-            this.watchModel.getWatches(),
-            this.handleModeClick,
-            this.handleLightClick,
-            this.handleIncreaseClick,
-            this.handleResetClick,
-        )
+        this.renderView()
     }
 
     public handleDisplayModetoggle = () => {
         this.watchModel.toggleDisplayFormat()
-        this.watchView.renderWatches(
-            this.watchModel.getWatches(),
-            this.handleModeClick,
-            this.handleLightClick,
-            this.handleIncreaseClick,
-            this.handleResetClick,
-        )
+        this.renderView()
     }
 
-    toggleWatchFormat(): void {
+    public toggleWatchFormat = (): void => {
         this.watchModel.toggleDisplayFormat()
+        this.renderView()
+    }
+
+    public renderView = (): void => {
         this.watchView.renderWatches(
             this.watchModel.getWatches(),
             this.handleModeClick,

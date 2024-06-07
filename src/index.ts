@@ -9,25 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const controller = new WatchController(watchModel, watchView)
 
     // Rendering
-    watchView.renderWatches(
-        watchModel.getWatches(),
-        controller.handleModeClick,
-        controller.handleLightClick,
-        controller.handleIncreaseClick,
-        controller.handleResetClick,
-    )
+    controller.renderView()
     try {
-        const intervalId = setInterval(
-            () =>
-                watchView.renderWatches(
-                    watchModel.getWatches(),
-                    controller.handleModeClick,
-                    controller.handleLightClick,
-                    controller.handleIncreaseClick,
-                    controller.handleResetClick,
-                ),
-            1000,
-        ) // Re-render every 1s
+        const intervalId = setInterval(() => controller.renderView(), 1000) // Re-render every 1s
     } catch (error) {
         console.error(error)
     }
