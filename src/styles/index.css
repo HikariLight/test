@@ -1,3 +1,75 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --primary: #5b21b6;
+    --backgroundLight: #fafaf9;
+    --backgroundDark: #1e3a8a;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Helvetica, Arial;
+    text-align: center;
+}
+
+#root {
+    height: 100vh;
+    width: 100vw;
+    overflow: none;
+}
+
+h1 {
+    color: var(--primary);
+    font-weight: 500;
+    padding: 0.5em 0;
+}
+
+button {
+    padding: 1em 2em;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    margin: 0 0.5em;
+}
+
+input {
+    padding: 0.5em;
+    border-radius: 0.25em;
+    border: 1px solid var(--primary);
+}
+
+.watchContainer {
+    margin: 1em 0.5em;
+    padding: 1em;
+    border: 1px solid var(--primary);
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.light-bg {
+    background-color: var(--backgroundLight);
+    color: var(--primary);
+}
+
+.dark-bg {
+    background-color: var(--backgroundDark);
+    color: white;
+}
+
+.watchContainer>* {
+    margin-top: 0.5em;
+}
+
+.timeLabel {
+    font-size: 1.25em;
+    line-height: 1.75em;
+}
+
+.timeZoneLabel {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}

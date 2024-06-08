@@ -9,54 +9,8 @@
             content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
     </head>
     <body>
-        <h1 class="my-2 text-center text-3xl text-purple-800">
-            GEHC Watch App
-        </h1>
-
-        <div class="grid grid-cols-1 grid-rows-3 sm:grid-cols-3">
-            <div class="flex h-fit flex-col border bg-slate-50 p-4">
-                <h3 class="my-2 text-center text-xl text-purple-700">
-                    Create a new Watch
-                </h3>
-
-                <div class="flex items-center space-x-2">
-                    <label>Timezone</label>
-                    <select id="timezone" class="w-full rounded-md p-2">
-                        <option value="UTC" selected>UTC</option>
-                        <option value="Europe/Paris">Paris</option>
-                        <option value="Europe/London">London</option>
-                        <option value="America/Los_Angeles">Los Angeles</option>
-                        <option value="America/New_York" default>
-                            New York
-                        </option>
-                        <option value="Asia/Tokyo">Tokyo</option>
-                        <option value="Africa/Johannesburg">
-                            South Africa
-                        </option>
-                    </select>
-                </div>
-                <button
-                    id="addWatchButton"
-                    class="my-2 rounded-xl bg-purple-800 p-4 text-white">
-                    Add Watch
-                </button>
-            </div>
-
-            <div
-                id="watchContainer"
-                class="flex w-full flex-col space-y-4"></div>
-
-            <div class="flex h-fit flex-col bg-slate-50">
-                <h3 class="my-2 text-center text-xl text-purple-700">
-                    Settings
-                </h3>
-
-                <button
-                    id="toggleDisplayFormat"
-                    class="my-2 rounded-xl bg-purple-800 p-4 text-white">
-                    Toggle Display Format
-                </button>
-            </div>
+        <div id="root">
+            <h1><%= htmlWebpackPlugin.options.title %></h1>
         </div>
     </body>
 </html>

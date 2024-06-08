@@ -14,6 +14,7 @@ class WatchController {
     }
 
     public addNewWatch = (timeZone: string): void => {
+        timeZone = timeZone === "" ? "UTC" : timeZone
         this.watchModel.createWatch(timeZone)
         this.renderView()
     }
@@ -49,11 +50,11 @@ class WatchController {
     }
 
     public renderView = (): void => {
-        this.watchView.renderWatches(
+        this.watchView.render(
             this.watchModel.getWatches(),
             this.handleModeClick,
-            this.handleLightClick,
             this.handleIncreaseClick,
+            this.handleLightClick,
             this.handleResetClick,
         )
     }

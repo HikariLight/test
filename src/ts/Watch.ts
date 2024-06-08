@@ -6,7 +6,7 @@ class Watch {
     private lightOn: boolean
     private timeOffset: TimeEdit
 
-    constructor(timeZone: string = "UTC") {
+    constructor(timeZone: string) {
         this.currentTime = new Date()
         this.mode = "view"
         this.lightOn = false

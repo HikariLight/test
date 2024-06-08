@@ -5,8 +5,10 @@ import { WatchController } from "./ts"
 
 document.addEventListener("DOMContentLoaded", () => {
     const watchModel = new WatchModel()
-    const watchView = new WatchView("watchContainer")
+    const watchView = new WatchView("root")
     const controller = new WatchController(watchModel, watchView)
+
+    controller.addNewWatch("Europe/Paris")
 
     // Rendering
     controller.renderView()
