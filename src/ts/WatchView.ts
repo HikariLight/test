@@ -1,54 +1,54 @@
+import { Observer } from "./Observer"
 import { Watch } from "./Watch"
+import { WatchController } from "./WatchController"
+import { createButton } from "../utils"
 
-class WatchView {
+class WatchView implements Observer {
+    private controller: WatchController
+    private watches: Watch[]
+
     private container: HTMLElement
     private watchesContainer: HTMLElement
     private addButton: HTMLButtonElement
     private toggleButton: HTMLButtonElement
     private timeZone: HTMLInputElement
 
-    constructor(targetDivId: string) {
+    constructor(targetDivId: string, contoller: WatchController) {
         this.container = document.getElementById(targetDivId)
+        if (!this.container) {
+            throw new Error(`Element with id ${targetDivId} not found.`)
+        }
+
+        this.controller = contoller
+        this.watches = []
 
         this.watchesContainer = document.createElement("div")
 
-        this.addButton = document.createElement("button")
-        this.addButton.textContent = "Add Watch"
         this.timeZone = document.createElement("input")
-
-        this.toggleButton = document.createElement("button")
-        this.toggleButton.textContent = "Toggle Display Format"
-
         this.timeZone.placeholder = "Timezone (+/- hh:mm)"
+
+        this.addButton = createButton("Create Watch", () =>
+            this.controller.createWatch(this.timeZone.value),
+        )
+
+        this.toggleButton = createButton("Toggle Display Format", () =>
+            this.controller.toggleDisplayFormat(),
+        )
 
         this.container.appendChild(this.addButton)
         this.container.appendChild(this.timeZone)
         this.container.appendChild(this.toggleButton)
     }
 
-    public bindModeToggle = (handler: () => void) => {
-        this.toggleButton.addEventListener("click", () => {
-            handler()
-        })
+    public update(watchList: Watch[]) {
+        this.watches = watchList
+        this.render()
     }
 
-    public bindAddWatch = (handler: (timeZone: string) => void) => {
-        this.addButton.addEventListener("click", () => {
-            const timeZone: string = this.timeZone.value
-            handler(timeZone)
-        })
-    }
-
-    public render(
-        watches: Watch[],
-        handleModeClick: (id: number) => void,
-        handleIncreaseClick: (id: number) => void,
-        handleLightClick: (id: number) => void,
-        handleResetClick: (id: number) => void,
-    ): void {
+    public render(): void {
         this.watchesContainer.innerHTML = ""
 
-        watches.forEach((watch, index) => {
+        this.watches.forEach((watch, index) => {
             const watchContainer = document.createElement("div")
             watchContainer.className = "watchContainer"
             watch.getLightStatus()
@@ -65,36 +65,29 @@ class WatchView {
             timeZoneLabel.textContent = `(Time zone: ${watch.getTimeZone()})`
             watchContainer.appendChild(timeZoneLabel)
 
-            const modeButton = document.createElement("button")
-            modeButton.textContent = "Mode"
-            modeButton.addEventListener("click", () => {
-                handleModeClick(index)
-            })
+            const modeButton = createButton("Mode", () =>
+                this.controller.toggleWatchMode(index),
+            )
             watchContainer.appendChild(modeButton)
 
-            const increaseButton = document.createElement("button")
-            increaseButton.textContent = "Increase"
-            increaseButton.addEventListener("click", () => {
-                handleIncreaseClick(index)
-            })
+            const increaseButton = createButton("Increase", () =>
+                this.controller.increaseWatchTime(index),
+            )
             watchContainer.appendChild(increaseButton)
 
-            const lightButton = document.createElement("button")
-            lightButton.textContent = "Light"
-            lightButton.addEventListener("click", () => {
-                handleLightClick(index)
-            })
+            const lightButton = createButton("Light", () =>
+                this.controller.toggleWatchLight(index),
+            )
             watchContainer.appendChild(lightButton)
 
-            const resetButton = document.createElement("button")
-            resetButton.textContent = "Reset"
-            resetButton.addEventListener("click", () => {
-                handleResetClick(index)
-            })
+            const resetButton = createButton("Reset", () =>
+                this.controller.resetWatch(index),
+            )
             watchContainer.appendChild(resetButton)
 
             this.watchesContainer.appendChild(watchContainer)
         })
+
         this.container.appendChild(this.watchesContainer)
     }
 }
