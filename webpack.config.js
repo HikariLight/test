@@ -27,7 +27,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "GE Template ts",
+            title: "GE Watch App",
             template: path.join(process.cwd(), "src/index.html"),
             filename: "index.html",
             favicon: path.join(process.cwd(), "src/favicon.ico"),

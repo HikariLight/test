@@ -1,54 +1,20 @@
 import "./styles/index.css"
-import { Watch } from "./ts/Watch"
-import { WatchManager } from "./ts/WatchManager"
+import { WatchModel } from "./ts"
+import { WatchView } from "./ts"
+import { WatchController } from "./ts"
 
-const watch = new Watch("Europe/Paris")
-const watchManager = new WatchManager()
-watchManager.addWatch(watch)
+document.addEventListener("DOMContentLoaded", () => {
+    const watchModel = new WatchModel()
+    const watchView = new WatchView("root")
+    const controller = new WatchController(watchModel, watchView)
 
-// Rendering
-try {
-    watchManager.renderWatches("container") // Rendering the first view
-    const intervalId = setInterval(
-        () => watchManager.renderWatches("container"),
-        1000,
-    ) // Re-render every 1s
-} catch (error) {
-    console.error(error)
-}
+    controller.addNewWatch("Europe/Paris")
 
-// Adding new watches
-const addWatchButton = document.querySelector("button#addWatch")
-if (addWatchButton) {
-    addWatchButton.addEventListener("click", () => {
-        const timeZonesDropdown = document.getElementById(
-            "timezone",
-        ) as HTMLSelectElement
-        const timeZone = timeZonesDropdown.value
-        watchManager.createWatch(timeZone)
-
-        try {
-            watchManager.renderWatches("container")
-        } catch (error) {
-            console.error(error)
-        }
-    })
-} else {
-    throw new Error("Add watch button not found")
-}
-
-// Changing display format (24H/12H)
-const toggleDisplayButton = document.querySelector("button#toggleDisplayFormat")
-if (toggleDisplayButton) {
-    toggleDisplayButton.addEventListener("click", () => {
-        watchManager.toggleDisplayFormat()
-
-        try {
-            watchManager.renderWatches("container")
-        } catch (error) {
-            console.error(error)
-        }
-    })
-} else {
-    throw new Error("Toggle display format button not found")
-}
+    // Rendering
+    controller.renderView()
+    try {
+        const intervalId = setInterval(() => controller.renderView(), 1000) // Re-render every 1s
+    } catch (error) {
+        console.error(error)
+    }
+})
