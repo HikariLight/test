@@ -27,9 +27,11 @@ class WatchView implements Observer {
         this.timeZone = document.createElement("input")
         this.timeZone.placeholder = "Timezone (+/- hh:mm)"
 
-        this.addButton = createButton("Create Watch", () =>
-            this.controller.createWatch(this.timeZone.value),
-        )
+        this.addButton = createButton("Create Watch", () => {
+            if (!this.validateTimezone(this.timeZone.value))
+                return alert("Not a valid timezone format")
+            this.controller.createWatch(this.timeZone.value)
+        })
 
         this.toggleButton = createButton("Toggle Display Format", () =>
             this.controller.toggleDisplayFormat(),
@@ -89,6 +91,12 @@ class WatchView implements Observer {
         })
 
         this.container.appendChild(this.watchesContainer)
+    }
+
+    private validateTimezone = (timeZone: string): boolean => {
+        // Validating whether the input timezone is conformant to the Intl.DateTimeFormat() formats
+        const regex = /^([+-])(\d{2}(:\d{2})?)$/
+        return regex.test(timeZone)
     }
 }
 
