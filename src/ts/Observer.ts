@@ -1,4 +1,4 @@
-import { Watch } from "./Watch"
+import { Watch } from "./model/Watch"
 
 interface Observer {
     update(subject: Watch[]): void

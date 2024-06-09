@@ -1,7 +1,7 @@
-import { Observer } from "./Observer"
-import { Watch } from "./Watch"
-import { WatchController } from "./WatchController"
-import { createButton } from "../utils"
+import { Observer } from "../Observer"
+import { Watch } from "../model/Watch"
+import { WatchController } from "../controller/WatchController"
+import { createButton } from "../../utils"
 
 class WatchView implements Observer {
     private controller: WatchController
