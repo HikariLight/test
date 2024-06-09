@@ -29,7 +29,7 @@ class WatchView implements Observer {
 
         this.addButton = createButton("Create Watch", () => {
             if (!this.validateTimezone(this.timeZone.value))
-                return alert("Not a valid timezone format")
+                return alert("Invalid timezone input")
             this.controller.createWatch(this.timeZone.value)
         })
 
@@ -65,6 +65,12 @@ class WatchView implements Observer {
                 "subLabel",
             )
             watchContainer.appendChild(timeZoneLabel)
+
+            const modeLabel = createLabel(
+                `Mode: ${watch.getCurrentMode()}`,
+                "subLabel",
+            )
+            watchContainer.appendChild(modeLabel)
 
             const modeButton = createButton("Mode", () =>
                 this.controller.toggleWatchMode(index),

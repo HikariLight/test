@@ -10,6 +10,10 @@ class EditMinuteState implements WatchState {
     handleIncrease(watch: Watch): void {
         watch.getTimeOffset().minutes += 1
     }
+
+    toString = (): string => {
+        return "Edit Minutes"
+    }
 }
 
 export { EditMinuteState }

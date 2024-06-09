@@ -18,7 +18,7 @@ class Watch {
         this.timeOffset = { hours: 0, minutes: 0 }
     }
 
-    public setState = (state: WatchState) => {
+    public setState = (state: WatchState): void => {
         this.state = state
     }
 
@@ -66,7 +66,7 @@ class Watch {
         }).format(this.currentTime)
     }
 
-    public getLightStatus = () => {
+    public getLightStatus = (): boolean => {
         return this.lightOn
     }
 
@@ -76,6 +76,10 @@ class Watch {
 
     public getTimeZone = (): string => {
         return this.timeZone
+    }
+
+    public getCurrentMode = (): string => {
+        return this.state.toString()
     }
 }
 

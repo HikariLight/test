@@ -8,6 +8,10 @@ class NormalState implements WatchState {
     }
 
     handleIncrease(watch: Watch): void {} // Nothing happens
+
+    toString = (): string => {
+        return "Normal"
+    }
 }
 
 export { NormalState }
