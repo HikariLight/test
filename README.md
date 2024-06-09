@@ -1,7 +1,6 @@
-# template-ts
-Template typescript project
-My solution for GEHC Technical test.
-Implemented in vanilla Typescript and Tailwind CSS.
+# GEHC Watch App
+My solution for GEHC Technical test.  
+Implemented in vanilla Typescript.  
 [Live link](https://gehc.dhia.dev/)
 
 ### Implemented functionalities
