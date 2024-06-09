@@ -1,28 +1,25 @@
+import { WatchState } from "./WatchState"
+import { NormalState } from "./NormalState"
+
 class Watch {
     private currentTime: Date
-    private mode: "view" | "editHours" | "editMinutes"
+    private state: WatchState
     private timeFormat: "12" | "24"
     private timeZone: string
     private lightOn: boolean
-    private timeOffset: TimeEdit
+    private timeOffset: { hours: number; minutes: number }
 
     constructor(timeZone: string) {
         this.currentTime = new Date()
-        this.mode = "view"
+        this.state = new NormalState()
         this.lightOn = false
         this.timeFormat = "24"
         this.timeZone = timeZone
         this.timeOffset = { hours: 0, minutes: 0 }
     }
 
-    public toggleMode(): void {
-        if (this.mode === "view") {
-            this.mode = "editHours"
-        } else if (this.mode === "editHours") {
-            this.mode = "editMinutes"
-        } else {
-            this.mode = "view"
-        }
+    public setState = (state: WatchState): void => {
+        this.state = state
     }
 
     public toggleTimeFormat = () => {
@@ -32,12 +29,15 @@ class Watch {
     }
 
     public increase(): void {
-        if (this.mode === "editHours") this.timeOffset.hours += 1
-        if (this.mode === "editMinutes") this.timeOffset.minutes += 1
+        this.state.handleIncrease(this)
     }
 
     public toggleLight(): void {
         this.lightOn = !this.lightOn
+    }
+
+    public toggleMode = (): void => {
+        this.state.handleMode(this)
     }
 
     public reset(): void {
@@ -66,12 +66,20 @@ class Watch {
         }).format(this.currentTime)
     }
 
-    public getLightStatus = () => {
+    public getLightStatus = (): boolean => {
         return this.lightOn
+    }
+
+    public getTimeOffset = (): { hours: number; minutes: number } => {
+        return this.timeOffset
     }
 
     public getTimeZone = (): string => {
         return this.timeZone
+    }
+
+    public getCurrentMode = (): string => {
+        return this.state.toString()
     }
 }
 

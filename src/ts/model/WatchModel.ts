@@ -1,6 +1,6 @@
 import { Watch } from "./Watch"
-import { Observer } from "./Observer"
-import { Subject } from "./Subject"
+import { Observer } from "../Observer"
+import { Subject } from "../Subject"
 
 class WatchModel implements Subject {
     private static instance: WatchModel

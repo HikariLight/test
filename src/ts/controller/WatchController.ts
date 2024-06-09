@@ -1,4 +1,4 @@
-import { WatchModel } from "./WatchModel"
+import { WatchModel } from "../model/WatchModel"
 
 class WatchController {
     private watchModel: WatchModel

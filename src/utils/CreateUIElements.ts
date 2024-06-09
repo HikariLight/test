@@ -8,4 +8,16 @@ const createButton = (
     return button
 }
 
-export { createButton }
+const createLabel = (
+    textContent: string,
+    className?: string,
+    id?: string,
+): HTMLElement => {
+    const label = document.createElement("label")
+    if (className) label.className = className
+    if (id) label.id = id
+    label.textContent = textContent
+    return label
+}
+
+export { createButton, createLabel }

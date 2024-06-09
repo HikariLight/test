@@ -1,7 +1,7 @@
-import { Observer } from "./Observer"
-import { Watch } from "./Watch"
-import { WatchController } from "./WatchController"
-import { createButton } from "../utils"
+import { Observer } from "../Observer"
+import { Watch } from "../model/Watch"
+import { WatchController } from "../controller/WatchController"
+import { createButton, createLabel } from "../../utils"
 
 class WatchView implements Observer {
     private controller: WatchController
@@ -29,7 +29,7 @@ class WatchView implements Observer {
 
         this.addButton = createButton("Create Watch", () => {
             if (!this.validateTimezone(this.timeZone.value))
-                return alert("Not a valid timezone format")
+                return alert("Invalid timezone input")
             this.controller.createWatch(this.timeZone.value)
         })
 
@@ -57,15 +57,20 @@ class WatchView implements Observer {
                 ? (watchContainer.className += " light-bg")
                 : (watchContainer.className += " dark-bg")
 
-            const time = document.createElement("label")
-            time.className = "timeLabel"
-            time.textContent = watch.getCurrentTime()
+            const time = createLabel(watch.getCurrentTime(), "timeLabel")
             watchContainer.appendChild(time)
 
-            const timeZoneLabel = document.createElement("label")
-            timeZoneLabel.className = "timeZoneLabel"
-            timeZoneLabel.textContent = `(Time zone: ${watch.getTimeZone()})`
+            const timeZoneLabel = createLabel(
+                `(Time zone: ${watch.getTimeZone()})`,
+                "subLabel",
+            )
             watchContainer.appendChild(timeZoneLabel)
+
+            const modeLabel = createLabel(
+                `Mode: ${watch.getCurrentMode()}`,
+                "subLabel",
+            )
+            watchContainer.appendChild(modeLabel)
 
             const modeButton = createButton("Mode", () =>
                 this.controller.toggleWatchMode(index),
