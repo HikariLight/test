@@ -2,7 +2,7 @@ import "./styles/index.css"
 import { WatchModel, WatchView, WatchController } from "./ts"
 
 document.addEventListener("DOMContentLoaded", () => {
-    const watchModel = new WatchModel()
+    const watchModel = WatchModel.getInstance()
     const controller = new WatchController(watchModel)
     const watchView = new WatchView("root", controller)
 
