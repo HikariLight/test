@@ -1,7 +1,7 @@
 import { Observer } from "../Observer"
 import { Watch } from "../model/Watch"
 import { WatchController } from "../controller/WatchController"
-import { createButton } from "../../utils"
+import { createButton, createLabel } from "../../utils"
 
 class WatchView implements Observer {
     private controller: WatchController
@@ -57,14 +57,13 @@ class WatchView implements Observer {
                 ? (watchContainer.className += " light-bg")
                 : (watchContainer.className += " dark-bg")
 
-            const time = document.createElement("label")
-            time.className = "timeLabel"
-            time.textContent = watch.getCurrentTime()
+            const time = createLabel(watch.getCurrentTime(), "timeLabel")
             watchContainer.appendChild(time)
 
-            const timeZoneLabel = document.createElement("label")
-            timeZoneLabel.className = "timeZoneLabel"
-            timeZoneLabel.textContent = `(Time zone: ${watch.getTimeZone()})`
+            const timeZoneLabel = createLabel(
+                `(Time zone: ${watch.getTimeZone()})`,
+                "subLabel",
+            )
             watchContainer.appendChild(timeZoneLabel)
 
             const modeButton = createButton("Mode", () =>
