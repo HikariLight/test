@@ -32,10 +32,6 @@ class WatchModel implements Subject {
         return this.watches
     }
 
-    public getWatch = (id: number): Watch => {
-        return this.watches.at(id)
-    }
-
     public addWatch = (watch: Watch) => {
         this.watches.push(watch)
         this.notify()
