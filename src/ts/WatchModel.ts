@@ -3,12 +3,20 @@ import { Observer } from "./Observer"
 import { Subject } from "./Subject"
 
 class WatchModel implements Subject {
+    private static instance: WatchModel
     private watches: Watch[]
     observers: Observer[]
 
-    constructor() {
+    private constructor() {
         this.watches = []
         this.observers = []
+    }
+
+    static getInstance = (): WatchModel => {
+        if (!WatchModel.instance) {
+            WatchModel.instance = new WatchModel()
+        }
+        return WatchModel.instance
     }
 
     public attach(observer: Observer): void {
@@ -30,10 +38,6 @@ class WatchModel implements Subject {
 
     public getWatches = (): Watch[] => {
         return this.watches
-    }
-
-    public getWatch = (id: number): Watch => {
-        return this.watches.at(id)
     }
 
     public addWatch = (watch: Watch) => {
