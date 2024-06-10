@@ -32,6 +32,10 @@ class Watch {
         this.state.handleIncrease(this)
     }
 
+    public decrease(): void {
+        this.state.handleDecrease(this)
+    }
+
     public toggleLight(): void {
         this.lightOn = !this.lightOn
     }

@@ -9,6 +9,8 @@ class NormalState implements WatchState {
 
     handleIncrease(watch: Watch): void {} // Nothing happens
 
+    handleDecrease(watch: Watch): void {} // Nothing happens
+
     toString = (): string => {
         return "Normal"
     }
