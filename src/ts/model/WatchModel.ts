@@ -1,15 +1,18 @@
 import { Watch } from "./Watch"
 import { Observer } from "../Observer"
 import { Subject } from "../Subject"
-
+import { Command } from "./Command"
+import { IncreaseCommand } from "./IncreaseCommand"
 class WatchModel implements Subject {
     private static instance: WatchModel
     private watches: Watch[]
+    private commands: Command[]
     observers: Observer[]
 
     private constructor() {
         this.watches = []
         this.observers = []
+        this.commands = []
     }
 
     static getInstance = (): WatchModel => {
@@ -55,7 +58,10 @@ class WatchModel implements Subject {
     }
 
     public increaseWatchTime = (id: number) => {
-        this.watches.at(id).increase()
+        const watch = this.watches.at(id)
+        const increaseCommand = new IncreaseCommand(watch)
+        increaseCommand.execute()
+        this.commands.push(increaseCommand)
         this.notify()
     }
 
@@ -70,7 +76,12 @@ class WatchModel implements Subject {
     }
 
     public resetWatch = (id: number) => {
-        this.watches.at(id).reset()
+        const watch = this.watches.at(id)
+        this.commands.forEach((command) => {
+            if (command.watch === watch && command.executed) {
+                command.undo()
+            }
+        })
         this.notify()
     }
 

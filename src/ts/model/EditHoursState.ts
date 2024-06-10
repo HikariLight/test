@@ -11,6 +11,10 @@ class EditHourState implements WatchState {
         watch.getTimeOffset().hours += 1
     }
 
+    handleDecrease(watch: Watch): void {
+        watch.getTimeOffset().hours -= 1
+    }
+
     toString = (): string => {
         return "Edit Hours"
     }
