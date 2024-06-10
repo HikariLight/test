@@ -13,7 +13,7 @@ Implemented in vanilla Typescript.
     - Time format toggling (24h / 12h)
 
 ### Implementation walkthrough
-Design patterns used: MVC, State, Command, Singleton.
+Design patterns used: MVC, State, Observer, Singleton.
 - Overall architecture follows the MVC model. 
 - The model is a Singleton to allow for a single source of truth.
 - The model also is a Subject in the Observer design pattern, whereas the View is an observer, in order to be notified of data changes.
