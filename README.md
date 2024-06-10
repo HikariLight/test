@@ -21,8 +21,11 @@ Design patterns used: MVC, State, Observer, Singleton.
 - View presents the data on a webpage and captures user events, calls for the controller, which in turn updates the model, which updates the view through the Observer pattern.
 
 ### Possible improvements
-- Multiple views, one for the web and one for the console. Could be implemented using *Factory* design pattern.
-- Implementation of the *Command* design pattern to allow for Undo/Redo functionality.
+- **Multiple views**: one for the web and one for the console. Could be implemented using *Factory* design pattern.
+    - Technically we could also refactor the watch creation logic using Factory but I've decided against adding extra complexity given that the implementation doesn't need it. (The only difference between watches is the timezone attribute).
+- **Undo/Redo**: through a more general implementation of the *Command* design pattern.
+    - Technically we could also use the Command pattern to for the reset functionality, but to avoid unnecessary complexity I decided against its inclusion. A version that does implement it however is on the "command" branch.
+- Unit testing
 
 ### Class diagram
 ![Class diagram](./class_diagram.png)
