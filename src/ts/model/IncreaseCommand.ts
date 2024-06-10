@@ -3,6 +3,7 @@ import { Watch } from "./Watch"
 
 class IncreaseCommand implements Command {
     watch: Watch
+    executed: boolean
 
     constructor(watch: Watch) {
         this.watch = watch
@@ -10,10 +11,12 @@ class IncreaseCommand implements Command {
 
     execute(): void {
         this.watch.increase()
+        this.executed = true
     }
 
     undo(): void {
         this.watch.decrease()
+        this.executed = false
     }
 }
 

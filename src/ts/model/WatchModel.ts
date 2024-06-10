@@ -78,7 +78,9 @@ class WatchModel implements Subject {
     public resetWatch = (id: number) => {
         const watch = this.watches.at(id)
         this.commands.forEach((command) => {
-            if (command.watch === watch) command.undo()
+            if (command.watch === watch && command.executed) {
+                command.undo()
+            }
         })
         this.notify()
     }
